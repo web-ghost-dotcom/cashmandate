@@ -12,3 +12,4 @@ demo/*.mp4
 demo/*.mp3
 demo/voiceover_segments/
 demo/replay.html
+demo/screen.json

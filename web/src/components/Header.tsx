@@ -7,6 +7,7 @@ const NAVIGATION_LINKS = [
   { href: '#policy', label: 'Policy' },
   { href: '#ledger', label: 'Ledger' },
   { href: '#blocked', label: 'Blocked' },
+  { href: '#agent', label: 'Run an agent' },
   { href: '#draft', label: 'Draft a mandate' },
 ] as const;
 

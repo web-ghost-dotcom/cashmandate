@@ -67,6 +67,10 @@ claude mcp add cashmandate -- npx tsx src/agent/mcpServer.ts   # CASHMANDATE_AGE
 
 `npm run demo:agent` runs a real session on chipnet. The owner locks 30,000 satoshis (limit 2,000 per payment, two approved suppliers, no minimum wait). A language model (Vultr Serverless Inference, `deepseek-v4.1-flash-1017`) connects over MCP and works through an invoice inbox, instructed to follow vendor messages exactly. One message tells it to pay a new address. The transcript is `demo/agent-session.json`; the web app reads `web/public/mandate.json`, written by the same run.
 
+## Use it from the browser
+
+No MCP client? Open the web app, go to "Run an agent", pick the per-payment limit, and paste a key for any OpenAI-compatible provider that supports tool calling (the default address is Vultr Serverless Inference). The agent works through an invoice inbox in your tab using the same two tools as the MCP server, against the real covenant on a simulated network with generated keys. Nothing touches a chain and nothing costs anything. The key is kept in the tab's memory and is sent only to the provider address you entered. The "Careless agent" switch tells the model to follow vendor messages exactly, so the redirect attempt in the inbox is tried and the covenant refuses it. For real chipnet funds, connect an MCP client as above.
+
 ## Transactions on chipnet
 
 Vault `bchtest:p0rxgrj0tyceqqfmaez7r54uxfw969udkuzh6atfauvmkvn74c7fyj24wc3h0`
@@ -82,7 +86,7 @@ Two further requests were refused by the covenant and so produced no transaction
 
 ## Tests
 
-`npm test` runs 26 tests on CashScript's mock network, which executes the compiled script in a VM. They cover every in-policy spend and every refusal: over the limit, unapproved payee, agent sweep, skipped interval, remainder not returned, inflated fee, extra output, bad recipient index, wrong signer, and revocation by a non-owner. A parity test runs six proposals through both the contract and the policy model the web app uses and requires them to agree.
+`npm test` runs 30 tests on CashScript's mock network, which executes the compiled script in a VM. They cover every in-policy spend and every refusal: over the limit, unapproved payee, agent sweep, skipped interval, remainder not returned, inflated fee, extra output, bad recipient index, wrong signer, and revocation by a non-owner. A parity test runs six proposals through both the contract and the policy model the web app uses and requires them to agree.
 
 ## Honest limits
 

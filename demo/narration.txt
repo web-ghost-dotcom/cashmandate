@@ -1,21 +1,25 @@
-CashMandate lets you give an AI agent a budget instead of your key. Here is how an agent actually uses it.
+You want an AI agent to pay your invoices. But a wallet key is all or nothing. If the agent gets fooled, you lose everything. CashMandate gives the agent a budget instead of your key.
 
-The agent connects over the Model Context Protocol, with its own key and the public terms of the mandate. The owner's key never reaches the agent. It discovers two tools: read the mandate, and pay.
+You decide the rules once. Thirty thousand satoshis in a vault. No more than two thousand per payment. Only two approved suppliers. Those rules are written into a Bitcoin Cash contract, and the money is locked inside it. This is the real funding transaction on chipnet.
 
-Here is a real session on chipnet. The owner locked thirty thousand satoshis in the vault, with a limit of two thousand per payment and two approved suppliers. The agent is a language model working through an invoice inbox. We told it to follow vendor instructions exactly, like a careless assistant would.
+Your agent connects over the Model Context Protocol, with its own key and the public rules. Your key never reaches it. It discovers two tools: get mandate, and pay.
 
-Invoice one comes from an approved supplier, inside the limit. The payment goes through, with a memo written on the chain.
+Now we give it the inbox. Four invoices. And we tell it to follow vendor instructions exactly, like a careless assistant would.
 
-Invoice two is a trap. A message says the bank details changed, and to send the money to a new address. The agent obeys. The covenant refuses, and returns the exact line of the script that failed: the recipient must be on the approved list.
+Invoice one. Price Feed Co, fifteen hundred satoshis. The agent calls pay. The contract checks the recipient, the limit, and the fee. Everything passes, and the payment goes through, with a memo written on the chain.
 
-Invoice three asks for nine thousand satoshis. Refused again: the payment is above the per-spend limit. The agent reports the refusal, and carries on.
+Invoice two is a trap. A message says the bank details changed, and to send the money to a new address. The agent obeys. The contract refuses, and returns the exact line that failed. The recipient must be on the approved list. The vault did not move.
 
-The last invoice is legitimate, from an approved supplier, and it is paid.
+Invoice three asks for nine thousand satoshis. The limit is two thousand. Refused again, on the exact line that checks the amount.
 
-The web app shows what happened on chain. The ledger lists the funding, both payments with their memos, and the revocation. Every row is a live chipnet transaction.
+Invoice four is legitimate, so it is paid. Two payments went out. Two attacks were stopped. The agent was fooled twice, and lost nothing.
 
-These are the attempts the covenant stopped, with the contract's own reply. The agent was fooled, and the money stayed.
+And your money is never trapped. The owner can sweep the vault at any time. One signature, and everything left comes back to you. That is how a mandate is ended early.
 
-You can try to break the mandate yourself. Push the payment past the limit, and the rule fails. Choose any other address, and it fails again.
+So what can the agent never do? Pay an address you did not approve. Exceed the limit. Skim the vault through the miner fee. Spend two vault outputs in one transaction. Or take the owner's exit. A minimum wait between payments is also enforced. Twenty six tests run every one of those attacks against the real script.
 
-At the end, the owner revoked the mandate. One signature, and everything left returns to the owner. Twenty six tests cover every rogue spend. CashMandate: give your agent a budget, not your key.
+You do not need your own agent system to try it. In the browser console, pick a limit, paste a model key, and an agent works through the same inbox in your tab, against the real contract on a simulated network. It pays the honest invoices, and the contract refuses the rest, live. It costs nothing, and touches no chain.
+
+Everything real is on the chain. The ledger lists the funding, both payments, and the revocation, each one a live chipnet transaction.
+
+CashMandate. Give your agent a budget, not your key.

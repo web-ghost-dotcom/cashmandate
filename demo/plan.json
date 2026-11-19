@@ -1,158 +1,79 @@
 {
-  "url": "http://localhost:5188/",
+  "url": "file:///Users/mac/Desktop/CODE/hackathons/projects/cashmandate/demo/film/film.html",
   "timings": "voiceover_segments/timings.json",
   "segments": [
     {
-      "section": "#top"
+      "scene": 0
     },
     {
-      "goto": "file:///Users/mac/Desktop/CODE/hackathons/projects/cashmandate/demo/replay.html"
+      "scene": 1
     },
     {
-      "actions": [
-        {
-          "evaluate": "reveal(1)"
-        },
-        {
-          "wait": 5000
-        },
-        {
-          "evaluate": "reveal(3)"
-        },
-        {
-          "wait": 2000
-        },
-        {
-          "evaluate": "reveal(4)"
-        },
-        {
-          "wait": 4500
-        },
-        {
-          "evaluate": "reveal(5)"
-        }
-      ]
+      "scene": 2
     },
     {
-      "actions": [
-        {
-          "wait": 1000
-        },
-        {
-          "evaluate": "reveal(6)"
-        },
-        {
-          "wait": 2500
-        },
-        {
-          "evaluate": "reveal(7)"
-        }
-      ]
+      "scene": 3
     },
     {
-      "actions": [
-        {
-          "evaluate": "reveal(8)"
-        },
-        {
-          "wait": 4000
-        },
-        {
-          "evaluate": "reveal(9)"
-        },
-        {
-          "wait": 3000
-        },
-        {
-          "evaluate": "reveal(10)"
-        },
-        {
-          "wait": 5500
-        },
-        {
-          "evaluate": "reveal(11)"
-        }
-      ]
+      "scene": 4
     },
     {
-      "actions": [
-        {
-          "evaluate": "reveal(12)"
-        },
-        {
-          "wait": 3000
-        },
-        {
-          "evaluate": "reveal(13)"
-        },
-        {
-          "wait": 3000
-        },
-        {
-          "evaluate": "reveal(14)"
-        }
-      ]
+      "scene": 5
     },
     {
-      "actions": [
-        {
-          "evaluate": "reveal(15)"
-        },
-        {
-          "wait": 2500
-        },
-        {
-          "evaluate": "reveal(16)"
-        },
-        {
-          "wait": 2000
-        },
-        {
-          "evaluate": "reveal(17)"
-        }
-      ]
+      "scene": 6
+    },
+    {
+      "scene": 7
+    },
+    {
+      "scene": 8
+    },
+    {
+      "scene": 9
     },
     {
       "goto": "http://localhost:5188/",
-      "section": "#ledger"
-    },
-    {
-      "section": "#blocked"
-    },
-    {
-      "section": "#policy",
+      "section": "#agent",
       "actions": [
         {
-          "wait": 1200
+          "wait": 2800
         },
         {
-          "setRange": {
-            "selector": "input[type=range]",
-            "value": 9000
-          }
-        },
-        {
-          "wait": 4000
-        },
-        {
-          "setRange": {
-            "selector": "input[type=range]",
-            "value": 1500
+          "fill": {
+            "selector": "input[type=password]",
+            "value": "$VULTR_INFERENCE_API_KEY"
           }
         },
         {
           "wait": 600
         },
         {
-          "select": {
-            "selector": "select",
-            "value": "unlisted"
-          }
+          "click": "button[type=submit]"
+        },
+        {
+          "wait": 9500
+        },
+        {
+          "scrollBy": 200
         }
       ]
     },
     {
-      "section": "#ledger"
+      "goto": "http://localhost:5188/",
+      "section": "#ledger",
+      "actions": [
+        {
+          "wait": 4500
+        },
+        {
+          "scrollBy": 300
+        }
+      ]
+    },
+    {
+      "goto": "file:///Users/mac/Desktop/CODE/hackathons/projects/cashmandate/demo/film/film.html",
+      "scene": 10
     }
   ]
 }
