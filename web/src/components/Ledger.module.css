@@ -1,0 +1,130 @@
+.section {
+  padding-block: var(--space-8);
+  border-top: var(--border);
+}
+
+.title {
+  margin-top: var(--space-2);
+  font-size: var(--text-2xl);
+}
+
+.intro {
+  max-width: 40rem;
+  margin-top: var(--space-3);
+  color: var(--color-ink-muted);
+}
+
+.placeholder {
+  margin-top: var(--space-6);
+  padding: var(--space-7) var(--space-5);
+  text-align: center;
+  color: var(--color-ink-faint);
+  border: 1px dashed var(--color-line-strong);
+  border-radius: var(--radius-lg);
+}
+
+.entries {
+  display: grid;
+  margin: var(--space-6) 0 0;
+  padding: 0;
+  list-style: none;
+  background: var(--color-surface);
+  border: var(--border);
+  border-radius: var(--radius-lg);
+}
+
+.entry {
+  display: grid;
+  grid-template-columns: 11rem minmax(0, 1fr) auto;
+  gap: var(--space-5);
+  align-items: start;
+  padding: var(--space-5);
+}
+
+.entry + .entry {
+  border-top: var(--border);
+}
+
+.kind {
+  display: grid;
+  gap: var(--space-2);
+  justify-items: start;
+}
+
+.kindLabel {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.kindLabel[data-kind='spend'] {
+  color: var(--color-primary);
+}
+
+.kindLabel[data-kind='revocation'] {
+  color: var(--color-alert);
+}
+
+.chip {
+  padding: 0.1rem 0.5rem;
+  border-radius: 999px;
+  font-size: var(--text-xs);
+}
+
+.confirmed {
+  background: var(--color-primary-tint);
+  color: var(--color-primary);
+}
+
+.pending {
+  background: color-mix(in srgb, var(--color-ink) 8%, transparent);
+  color: var(--color-ink-muted);
+}
+
+.missing {
+  background: var(--color-alert-tint);
+  color: var(--color-alert);
+}
+
+.label {
+  font-weight: 500;
+}
+
+.amount {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-1);
+  font-size: var(--text-sm);
+}
+
+.recipient {
+  color: var(--color-ink-muted);
+}
+
+.memo {
+  margin-top: var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--color-ink-muted);
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--text-xs);
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 50rem) {
+  .entry {
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+  }
+}

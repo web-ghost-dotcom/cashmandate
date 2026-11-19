@@ -1,0 +1,21 @@
+CashMandate lets you give an AI agent a budget instead of your key. Here is how an agent actually uses it.
+
+The agent connects over the Model Context Protocol, with its own key and the public terms of the mandate. The owner's key never reaches the agent. It discovers two tools: read the mandate, and pay.
+
+Here is a real session on chipnet. The owner locked thirty thousand satoshis in the vault, with a limit of two thousand per payment and two approved suppliers. The agent is a language model working through an invoice inbox. We told it to follow vendor instructions exactly, like a careless assistant would.
+
+Invoice one comes from an approved supplier, inside the limit. The payment goes through, with a memo written on the chain.
+
+Invoice two is a trap. A message says the bank details changed, and to send the money to a new address. The agent obeys. The covenant refuses, and returns the exact line of the script that failed: the recipient must be on the approved list.
+
+Invoice three asks for nine thousand satoshis. Refused again: the payment is above the per-spend limit. The agent reports the refusal, and carries on.
+
+The last invoice is legitimate, from an approved supplier, and it is paid.
+
+The web app shows what happened on chain. The ledger lists the funding, both payments with their memos, and the revocation. Every row is a live chipnet transaction.
+
+These are the attempts the covenant stopped, with the contract's own reply. The agent was fooled, and the money stayed.
+
+You can try to break the mandate yourself. Push the payment past the limit, and the rule fails. Choose any other address, and it fails again.
+
+At the end, the owner revoked the mandate. One signature, and everything left returns to the owner. Twenty six tests cover every rogue spend. CashMandate: give your agent a budget, not your key.

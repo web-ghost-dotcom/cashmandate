@@ -1,0 +1,115 @@
+.hero {
+  padding-block: var(--space-8) var(--space-8);
+}
+
+.hero .container {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.hero .container > * {
+  max-width: 46rem;
+}
+
+.hero .container > .breakdown {
+  max-width: 100%;
+}
+
+.headline {
+  font-size: var(--text-display);
+  max-width: 14ch;
+  margin-bottom: var(--space-3);
+}
+
+.lede {
+  font-size: var(--text-lg);
+  color: var(--color-ink-muted);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-3);
+}
+
+.breakdown {
+  margin-top: var(--space-7);
+}
+
+.breakdownPlaceholder {
+  padding: var(--space-6);
+  border: 1px dashed var(--color-line-strong);
+  border-radius: var(--radius-lg);
+  color: var(--color-ink-faint);
+  text-align: center;
+}
+
+.figure {
+  margin: 0;
+  padding: var(--space-5);
+  background: var(--color-surface);
+  border: var(--border);
+  border-radius: var(--radius-lg);
+}
+
+.caption {
+  font-size: var(--text-sm);
+  color: var(--color-ink-muted);
+}
+
+.bar {
+  display: flex;
+  gap: 3px;
+  height: 3.25rem;
+  margin-top: var(--space-4);
+}
+
+.segment {
+  flex-basis: 0;
+  min-width: 6px;
+  border-radius: 4px;
+  transform-origin: left center;
+}
+
+.payment-first {
+  background: var(--color-primary);
+}
+
+.payment-second {
+  background: color-mix(in srgb, var(--color-primary) 55%, var(--color-surface));
+}
+
+.fees {
+  background: var(--color-ink-faint);
+}
+
+.returned {
+  background: var(--color-line-strong);
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3) var(--space-6);
+  margin: var(--space-4) 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--text-sm);
+}
+
+.legend li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.swatch {
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 3px;
+}
+
+.legendLabel {
+  color: var(--color-ink-muted);
+}

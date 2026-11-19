@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.keys/
+.env
+*.log
+.DS_Store
+web/node_modules/
+web/dist/
+demo/recording/
+demo/*.webm
+demo/*.mp4
+demo/*.mp3
+demo/voiceover_segments/
+demo/replay.html

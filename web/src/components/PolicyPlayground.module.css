@@ -1,0 +1,142 @@
+.section {
+  padding-block: var(--space-8);
+  border-top: var(--border);
+}
+
+.title {
+  margin-top: var(--space-2);
+  font-size: var(--text-2xl);
+}
+
+.intro {
+  max-width: 40rem;
+  margin-top: var(--space-3);
+  color: var(--color-ink-muted);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: var(--space-6);
+  margin-top: var(--space-6);
+  align-items: start;
+}
+
+.controls,
+.verdict {
+  padding: var(--space-5);
+  background: var(--color-surface);
+  border: var(--border);
+  border-radius: var(--radius-lg);
+}
+
+.controls {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.control {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.control label {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+  font-size: var(--text-sm);
+  font-weight: 500;
+}
+
+.control label span {
+  color: var(--color-primary);
+}
+
+.control input[type='range'] {
+  width: 100%;
+  accent-color: var(--color-primary);
+}
+
+.control select {
+  min-height: 2.75rem;
+  padding: 0 var(--space-3);
+  background: var(--color-paper);
+  border: 1px solid var(--color-line-strong);
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+  transition: border-color var(--duration-fast) var(--ease-out);
+}
+
+.control select:hover {
+  border-color: var(--color-ink-faint);
+}
+
+.rules {
+  display: grid;
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rules li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-3);
+  align-items: start;
+}
+
+.rules strong {
+  display: block;
+  font-size: var(--text-sm);
+}
+
+.rules small {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--color-ink-muted);
+}
+
+.ruleIcon {
+  display: grid;
+  place-items: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+}
+
+.rules li[data-passed='true'] .ruleIcon {
+  background: var(--color-primary-tint);
+  color: var(--color-primary);
+}
+
+.rules li[data-passed='false'] .ruleIcon {
+  background: var(--color-alert-tint);
+  color: var(--color-alert);
+}
+
+.outcome {
+  margin-top: var(--space-5);
+  padding-top: var(--space-4);
+  border-top: var(--border);
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+}
+
+.outcome[data-allowed='true'] {
+  color: var(--color-primary);
+}
+
+.outcome[data-allowed='false'] {
+  color: var(--color-alert);
+}
+
+.waiting {
+  color: var(--color-ink-faint);
+}
+
+@media (max-width: 60rem) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+}

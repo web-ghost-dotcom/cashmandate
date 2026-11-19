@@ -1,0 +1,21 @@
+{
+  "title": "CashMandate",
+  "subtitle": "An agent connects to its mandate over MCP",
+  "fontDirectory": "file:///Users/mac/Desktop/CODE/hackathons/projects/cashmandate/web/node_modules/@fontsource-variable/geist/files",
+  "accentColor": "#243d99",
+  "transcriptPath": "agent-session.json",
+  "connect": {
+    "command": "$ claude mcp add cashmandate -- npx tsx src/agent/mcpServer.ts\n  env CASHMANDATE_AGENT_CONFIG=.keys/agent-config.json",
+    "configJson": "{\n  \"agentPrivateKeyHex\": \"<agent key only>\",\n  \"terms\": { owner hash, approved\n    recipients, limit, pace }\n}",
+    "tools": [
+      {
+        "name": "get_mandate",
+        "description": "Read balance, limit, pace and approved recipients"
+      },
+      {
+        "name": "pay",
+        "description": "Pay a recipient; the covenant decides"
+      }
+    ]
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "name": "cashmandate",
+  "version": "0.1.0",
+  "description": "Spending mandates for AI agents on Bitcoin Cash",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "compile:contract": "cashc contracts/CashMandate.cash --format ts --output artifacts/CashMandate.artifact.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "wallet:create": "tsx scripts/create-wallets.ts",
+    "demo:chipnet": "tsx scripts/run-chipnet-demo.ts",
+    "agent:mcp": "tsx src/agent/mcpServer.ts",
+    "demo:agent": "tsx scripts/run-agent-session.ts"
+  },
+  "license": "MIT",
+  "type": "module",
+  "private": true,
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "@bitauth/libauth": "3.0.0",
+    "@modelcontextprotocol/sdk": "1.32.2",
+    "cashscript": "0.14.0",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "26.6.6",
+    "cashc": "0.14.0",
+    "tsx": "4.23.15",
+    "typescript": "7.0.2",
+    "vitest": "5.1.1"
+  }
+}

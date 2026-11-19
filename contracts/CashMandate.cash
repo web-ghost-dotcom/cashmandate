@@ -1,0 +1,71 @@
+pragma cashscript ^0.14.0;
+
+// Largest miner fee, in satoshis, an agent spend may pay. Anything not sent to
+// a payment or back to the vault is a fee, so this stops fee-based skimming.
+int constant MAXIMUM_MINER_FEE_SATOSHIS = 2000;
+
+// Each approved recipient is stored as a 20-byte public key hash.
+int constant RECIPIENT_ENTRY_BYTE_LENGTH = 20;
+
+// First byte of a standard data-carrier (OP_RETURN) locking bytecode.
+bytes1 constant OP_RETURN_BYTE = 0x6a;
+
+// A spending mandate: the owner funds one vault output and an agent key may
+// spend it only inside these terms. The owner key can sweep the vault at any
+// time, which is also how an allowance is ended early.
+contract CashMandate(
+    bytes20 ownerPublicKeyHash,
+    pubkey agentPublicKey,
+    bytes32 approvedRecipientsHash,
+    int perSpendLimitSatoshis,
+    int minimumBlocksBetweenSpends
+) {
+    // Agent spend. Output 0 pays an approved recipient no more than the
+    // per-spend limit. Output 1 returns the rest to this same contract, so the
+    // next spend is a fresh output whose age restarts at zero. Optional output
+    // 2 is a zero-value OP_RETURN memo recording why the agent paid.
+    function spend(sig agentSignature, bytes approvedRecipients, int recipientIndex) {
+        require(checkSig(agentSignature, agentPublicKey));
+
+        // Rate limit: the vault output must be old enough, and the fresh
+        // output created below makes the clock start over.
+        require(this.age >= minimumBlocksBetweenSpends);
+
+        // One input only, so a second vault output cannot be spent in the
+        // same transaction to double the per-spend limit.
+        require(tx.inputs.length == 1);
+
+        // Recipient policy: the supplied list must hash to the committed
+        // value, and the payment must go to the entry at the given index.
+        require(sha256(approvedRecipients) == approvedRecipientsHash);
+        bytes remainingList = approvedRecipients.split(recipientIndex * RECIPIENT_ENTRY_BYTE_LENGTH)[1];
+        bytes recipientEntry = remainingList.split(RECIPIENT_ENTRY_BYTE_LENGTH)[0];
+        bytes25 recipientLockingBytecode = new LockingBytecodeP2PKH(unsafe_bytes20(recipientEntry));
+
+        int vaultValue = tx.inputs[0].value;
+        require(tx.outputs.length >= 2);
+        require(tx.outputs.length <= 3);
+
+        // Payment output.
+        require(tx.outputs[0].lockingBytecode == recipientLockingBytecode);
+        require(tx.outputs[0].value <= perSpendLimitSatoshis);
+        require(tx.outputs[0].tokenCategory == 0x);
+
+        // Continuation output: same covenant, remainder preserved.
+        require(tx.outputs[1].lockingBytecode == tx.inputs[0].lockingBytecode);
+        require(tx.outputs[1].value >= vaultValue - tx.outputs[0].value - MAXIMUM_MINER_FEE_SATOSHIS);
+        require(tx.outputs[1].tokenCategory == 0x);
+
+        // Memo output, when present, carries no value.
+        if (tx.outputs.length == 3) {
+            require(tx.outputs[2].value == 0);
+            require(tx.outputs[2].lockingBytecode.split(1)[0] == OP_RETURN_BYTE);
+        }
+    }
+
+    // Owner control. The owner may move the vault anywhere at any time.
+    function revoke(pubkey ownerPublicKey, sig ownerSignature) {
+        require(hash160(ownerPublicKey) == ownerPublicKeyHash);
+        require(checkSig(ownerSignature, ownerPublicKey));
+    }
+}

@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "network": "chipnet",
+  "title": "An AI agent works through an invoice inbox",
+  "contractAddress": "bchtest:p0rxgrj0tyceqqfmaez7r54uxfw969udkuzh6atfauvmkvn74c7fyj24wc3h0",
+  "ownerAddress": "bchtest:qr87t0dfss2zmq28d8r7ljpcch7ajpe36uz2u2tzus",
+  "agentAddress": "bchtest:qqn6l5a95namdqh3rul0sk898kkgzjjjgy5g75prlt",
+  "terms": {
+    "ownerPublicKeyHashHex": "cfe5bda984142d814769c7efc838c5fdd90731d7",
+    "agentPublicKeyHex": "03635020d4d7d94a5e37295459d621916ae02a6edd0b3504e5f537c454fd1655b1",
+    "approvedRecipientsHex": [
+      "b9bbc49a5935d395e9e0d44a6ffd683fb8a84f77",
+      "4725b7df0ba2b46404d63fd3f89c3793683dc47c"
+    ],
+    "perSpendLimitSatoshis": 2000,
+    "minimumBlocksBetweenSpends": 0
+  },
+  "recipients": [
+    {
+      "label": "Price Feed Co",
+      "address": "bchtest:qzumh3y6ty6a890fur2y5mladqlm32z0wups0dxcnh"
+    },
+    {
+      "label": "Weather API",
+      "address": "bchtest:qprjtd7lpw3tgeqy6cla87yux7fks0wy0squ4ys900"
+    }
+  ],
+  "vaultSatoshis": 30000,
+  "status": "revoked",
+  "ledger": [
+    {
+      "kind": "funding",
+      "label": "Owner funds the mandate vault",
+      "transactionId": "6ccd06f83f77e24ad7c1014feb87d5939e795a6880003af8ff96f474f4ecb770",
+      "paymentSatoshis": null,
+      "recipientAddress": null,
+      "memo": null
+    },
+    {
+      "kind": "spend",
+      "label": "Agent pays inside the mandate",
+      "transactionId": "6183d4c167c3afccc5a332e2cd90edc79470ed41dae3ecdf86aa7b200ed674c8",
+      "paymentSatoshis": 1500,
+      "recipientAddress": "bchtest:qzumh3y6ty6a890fur2y5mladqlm32z0wups0dxcnh",
+      "memo": "Price Feed Co invoice 1042 - 24h price feed"
+    },
+    {
+      "kind": "spend",
+      "label": "Agent pays inside the mandate",
+      "transactionId": "8f57fcc688ec53874fa9490d46c6fd79abd57140365d36aa0bbf88aa38ca8c6d",
+      "paymentSatoshis": 1800,
+      "recipientAddress": "bchtest:qprjtd7lpw3tgeqy6cla87yux7fks0wy0squ4ys900",
+      "memo": "Weather API invoice 1045 - 7-day forecast credits"
+    },
+    {
+      "kind": "revocation",
+      "label": "Owner revokes the mandate",
+      "transactionId": "7d44ebc8532d283e48a61972685959fb6463c9fcf3118066a2d39c80819b0283",
+      "paymentSatoshis": null,
+      "recipientAddress": null,
+      "memo": null
+    }
+  ],
+  "blockedAttempts": [
+    {
+      "attemptId": "agent-attempt-1",
+      "title": "Payment redirected to an unapproved address",
+      "description": "The agent asked to pay 1200 satoshis to bchtest:qrj7hy59...fv0mky.",
+      "rule": "recipient-allowlist",
+      "rejectionMessage": "CashMandate.cash:50 Require statement failed at input 0 in contract CashMandate.cash at line 50. require(tx.outputs[0].lockingBytecode == recipientLockingBytecode);"
+    },
+    {
+      "attemptId": "agent-attempt-2",
+      "title": "Payment above the per-spend limit",
+      "description": "The agent asked to pay 9000 satoshis to bchtest:qzumh3y6...0dxcnh.",
+      "rule": "spending-limit",
+      "rejectionMessage": "CashMandate.cash:51 Require statement failed at input 0 in contract CashMandate.cash at line 51. require(tx.outputs[0].value <= perSpendLimitSatoshis);"
+    }
+  ]
+}

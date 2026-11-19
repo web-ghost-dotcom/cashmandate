@@ -1,0 +1,158 @@
+{
+  "url": "http://localhost:5188/",
+  "timings": "voiceover_segments/timings.json",
+  "segments": [
+    {
+      "section": "#top"
+    },
+    {
+      "goto": "file:///Users/mac/Desktop/CODE/hackathons/projects/cashmandate/demo/replay.html"
+    },
+    {
+      "actions": [
+        {
+          "evaluate": "reveal(1)"
+        },
+        {
+          "wait": 5000
+        },
+        {
+          "evaluate": "reveal(3)"
+        },
+        {
+          "wait": 2000
+        },
+        {
+          "evaluate": "reveal(4)"
+        },
+        {
+          "wait": 4500
+        },
+        {
+          "evaluate": "reveal(5)"
+        }
+      ]
+    },
+    {
+      "actions": [
+        {
+          "wait": 1000
+        },
+        {
+          "evaluate": "reveal(6)"
+        },
+        {
+          "wait": 2500
+        },
+        {
+          "evaluate": "reveal(7)"
+        }
+      ]
+    },
+    {
+      "actions": [
+        {
+          "evaluate": "reveal(8)"
+        },
+        {
+          "wait": 4000
+        },
+        {
+          "evaluate": "reveal(9)"
+        },
+        {
+          "wait": 3000
+        },
+        {
+          "evaluate": "reveal(10)"
+        },
+        {
+          "wait": 5500
+        },
+        {
+          "evaluate": "reveal(11)"
+        }
+      ]
+    },
+    {
+      "actions": [
+        {
+          "evaluate": "reveal(12)"
+        },
+        {
+          "wait": 3000
+        },
+        {
+          "evaluate": "reveal(13)"
+        },
+        {
+          "wait": 3000
+        },
+        {
+          "evaluate": "reveal(14)"
+        }
+      ]
+    },
+    {
+      "actions": [
+        {
+          "evaluate": "reveal(15)"
+        },
+        {
+          "wait": 2500
+        },
+        {
+          "evaluate": "reveal(16)"
+        },
+        {
+          "wait": 2000
+        },
+        {
+          "evaluate": "reveal(17)"
+        }
+      ]
+    },
+    {
+      "goto": "http://localhost:5188/",
+      "section": "#ledger"
+    },
+    {
+      "section": "#blocked"
+    },
+    {
+      "section": "#policy",
+      "actions": [
+        {
+          "wait": 1200
+        },
+        {
+          "setRange": {
+            "selector": "input[type=range]",
+            "value": 9000
+          }
+        },
+        {
+          "wait": 4000
+        },
+        {
+          "setRange": {
+            "selector": "input[type=range]",
+            "value": 1500
+          }
+        },
+        {
+          "wait": 600
+        },
+        {
+          "select": {
+            "selector": "select",
+            "value": "unlisted"
+          }
+        }
+      ]
+    },
+    {
+      "section": "#ledger"
+    }
+  ]
+}
