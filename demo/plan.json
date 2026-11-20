@@ -52,10 +52,13 @@
           "click": "button[type=submit]"
         },
         {
-          "wait": 9500
+          "wait": 900
         },
         {
-          "scrollBy": 200
+          "evaluate": "document.querySelector('#agent').scrollIntoView({behavior:'smooth'})"
+        },
+        {
+          "wait": 9500
         }
       ]
     },
