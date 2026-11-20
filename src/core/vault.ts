@@ -59,6 +59,8 @@ export interface OwnerRevokeRequest {
   readonly provider: NetworkProvider;
   readonly contract: MandateContract;
   readonly owner: AgentIdentity;
+  /** Where the swept vault goes. Defaults to the owner's own address. */
+  readonly destinationAddress?: string;
 }
 
 export async function findVaultUtxo(contract: MandateContract): Promise<SpendableUtxo> {
@@ -166,13 +168,13 @@ export async function agentSpend(request: AgentSpendRequest): Promise<Transactio
 }
 
 export async function ownerRevoke(request: OwnerRevokeRequest): Promise<TransactionReceipt> {
-  const { provider, contract, owner } = request;
+  const { provider, contract, owner, destinationAddress = owner.address } = request;
   const vaultUtxo = await findVaultUtxo(contract);
 
   const transactionBuilder = new TransactionBuilder({ provider });
   transactionBuilder.addInput(vaultUtxo, contract.unlock.revoke(owner.publicKey, owner.signatureTemplate));
   transactionBuilder.addOutput({
-    to: owner.address,
+    to: destinationAddress,
     amount: vaultUtxo.satoshis - SPEND_FEE_SATOSHIS,
   });
   return broadcast(transactionBuilder);

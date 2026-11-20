@@ -3,6 +3,7 @@ import { lazy, Suspense } from 'react';
 import { BlockedAttempts } from './components/BlockedAttempts';
 import { Footer } from './components/Footer';
 import { Header } from './components/Header';
+import { TopBanner } from './components/TopBanner';
 import { Hero } from './components/Hero';
 import { Ledger } from './components/Ledger';
 import { MandateDrafter } from './components/MandateDrafter';
@@ -20,6 +21,7 @@ export function App() {
 
   return (
     <MotionConfig reducedMotion="user">
+      <TopBanner />
       <Header />
       <main>
         <Hero recordState={recordState} />

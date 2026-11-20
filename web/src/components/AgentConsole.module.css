@@ -354,3 +354,94 @@
   font-size: var(--text-xs);
   color: var(--color-ink-muted);
 }
+
+.modeSwitch {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-1);
+  padding: var(--space-1);
+  background: var(--color-paper);
+  border: var(--border);
+  border-radius: var(--radius-md);
+}
+
+.modeSwitch button {
+  min-height: 2.5rem;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--color-ink-muted);
+  cursor: pointer;
+  transition:
+    background-color var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out);
+}
+
+.modeSwitch button:hover:not(:disabled) {
+  color: var(--color-ink);
+}
+
+.modeSwitch button:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 1px;
+}
+
+.modeSwitch button[data-active='true'] {
+  background: var(--color-surface);
+  color: var(--color-primary);
+  box-shadow: 0 0 0 1px var(--color-line-strong);
+}
+
+.modeSwitch button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.mainnet {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.mainnetNote {
+  font-size: var(--text-xs);
+  color: var(--color-ink-muted);
+  line-height: var(--leading-snug);
+}
+
+.mainnetNote a {
+  font-family: var(--font-mono);
+  color: var(--color-primary);
+}
+
+.fundingRow {
+  display: flex;
+  align-items: end;
+  gap: var(--space-3);
+}
+
+.linkButton {
+  justify-self: start;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-size: var(--text-xs);
+  color: var(--color-primary);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.returnRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border: var(--border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  font-size: var(--text-xs);
+}

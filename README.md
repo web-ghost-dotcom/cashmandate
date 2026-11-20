@@ -73,6 +73,12 @@ claude mcp add cashmandate -- npx tsx src/agent/mcpServer.ts   # CASHMANDATE_AGE
 
 No MCP client? Open the web app, go to "Run an agent", pick the per-payment limit, and paste a key for any OpenAI-compatible provider that supports tool calling (the default address is Vultr Serverless Inference). The agent works through an invoice inbox in your tab using the same two tools as the MCP server, against the real covenant on a simulated network with generated keys. Nothing touches a chain and nothing costs anything. The key is kept in the tab's memory and is sent only to the provider address you entered. The "Careless agent" switch tells the model to follow vendor messages exactly, so the redirect attempt in the inbox is tried and the covenant refuses it. For real chipnet funds, connect an MCP client as above.
 
+### Mainnet, funded from your wallet
+
+Switch the console to "Bitcoin Cash mainnet" and connect a wallet with [WizardConnect](https://docs.riftenlabs.com/wizardconnect/) (scan the code with Cashonize, Paytaca or Selene). Pick the per-payment limit, then fund the vault with 6,000, 8,000 or 10,000 sats. The two approved suppliers are two of your own wallet addresses, so every payment the agent makes returns to you, and the careless-agent redirect to a stranger is refused by the network. "Revoke as owner" sweeps the remainder to your wallet. Download the session keys before closing the tab. The wallet signs only the funding transaction; the agent and owner keys that spend the vault are generated in the page.
+
+Status: the wallet transfer builder is covered by unit tests against a fake wallet, the WizardConnect pairing screen and mainnet Electrum access are checked in a real browser, and no mainnet transaction is recorded yet. The first one is added here once it exists.
+
 ## Transactions on chipnet
 
 Vault `bchtest:p0rxgrj0tyceqqfmaez7r54uxfw969udkuzh6atfauvmkvn74c7fyj24wc3h0`
@@ -88,7 +94,7 @@ Two further requests were refused by the covenant and so produced no transaction
 
 ## Tests
 
-`npm test` runs 30 tests on CashScript's mock network, which executes the compiled script in a VM. They cover every in-policy spend and every refusal: over the limit, unapproved payee, agent sweep, skipped interval, remainder not returned, inflated fee, extra output, bad recipient index, wrong signer, and revocation by a non-owner. A parity test runs six proposals through both the contract and the policy model the web app uses and requires them to agree.
+`npm test` runs 33 tests on CashScript's mock network, which executes the compiled script in a VM. They cover every in-policy spend and every refusal: over the limit, unapproved payee, agent sweep, skipped interval, remainder not returned, inflated fee, extra output, bad recipient index, wrong signer, and revocation by a non-owner. A parity test runs six proposals through both the contract and the policy model the web app uses and requires them to agree.
 
 ## Honest limits
 

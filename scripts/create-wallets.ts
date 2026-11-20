@@ -2,20 +2,34 @@ import { existsSync, mkdirSync, writeFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { generateRosterFile, parseRosterFile } from '../src/core/agentRoster';
 
-const ROSTER_FILE_PATH = resolve(import.meta.dirname, '../.keys/chipnet-agents.json');
+const SUPPORTED_NETWORKS = ['chipnet', 'mainnet'] as const;
+type WalletNetwork = (typeof SUPPORTED_NETWORKS)[number];
+
+function readNetwork(): WalletNetwork {
+  const requestedNetwork = process.argv[2] ?? 'chipnet';
+  const network = SUPPORTED_NETWORKS.find(function matches(candidate) {
+    return candidate === requestedNetwork;
+  });
+  if (network === undefined) {
+    throw new Error(`Unknown network "${requestedNetwork}". Use one of: ${SUPPORTED_NETWORKS.join(', ')}`);
+  }
+  return network;
+}
 
 function main(): void {
-  if (existsSync(ROSTER_FILE_PATH)) {
-    console.error(`Refusing to overwrite existing roster at ${ROSTER_FILE_PATH}`);
+  const network = readNetwork();
+  const rosterFilePath = resolve(import.meta.dirname, `../.keys/${network}-agents.json`);
+  if (existsSync(rosterFilePath)) {
+    console.error(`Refusing to overwrite existing roster at ${rosterFilePath}`);
     process.exitCode = 1;
     return;
   }
-  mkdirSync(dirname(ROSTER_FILE_PATH), { recursive: true });
-  const serializedRoster = JSON.stringify(generateRosterFile('chipnet'), null, 2);
-  writeFileSync(ROSTER_FILE_PATH, serializedRoster, { mode: 0o600 });
+  mkdirSync(dirname(rosterFilePath), { recursive: true });
+  const serializedRoster = JSON.stringify(generateRosterFile(network), null, 2);
+  writeFileSync(rosterFilePath, serializedRoster, { mode: 0o600 });
 
-  const roster = parseRosterFile(serializedRoster, 'chipnet');
-  console.log('Chipnet roster created. Fund the owner address from the faucet:');
+  const roster = parseRosterFile(serializedRoster, network);
+  console.log(`${network} roster created. Fund the owner address:`);
   console.log(`  owner: ${roster.owner.address}`);
 }
 
