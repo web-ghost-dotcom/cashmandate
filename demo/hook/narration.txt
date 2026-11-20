@@ -1,0 +1,9 @@
+Give an AI agent your wallet key, and one bad message can empty it. CashMandate gives it a budget instead.
+
+The owner locks funds in a Bitcoin Cash contract. A cap on every payment, approved recipients only, and a revoke button that takes everything back.
+
+Watch a careless agent get fooled. A vendor message says, send the money to a new address. The network refuses it.
+
+Run an agent in your browser, set the limit, and watch the vault pay what is allowed and refuse the rest. Real covenant, real refusals.
+
+CashMandate. Spending mandates for AI agents. Try it now.

@@ -1,0 +1,49 @@
+{
+  "url": "file:///Users/mac/Desktop/CODE/hackathons/projects/cashmandate/demo/film/film.html",
+  "timings": "voiceover_segments/timings.json",
+  "segments": [
+    {
+      "scene": 0
+    },
+    {
+      "scene": 1
+    },
+    {
+      "scene": 5
+    },
+    {
+      "goto": "https://cashmandate.vercel.app/",
+      "section": "#agent",
+      "actions": [
+        {
+          "wait": 700
+        },
+        {
+          "fill": {
+            "selector": "input[type=password]",
+            "value": "$VULTR_INFERENCE_API_KEY"
+          }
+        },
+        {
+          "wait": 600
+        },
+        {
+          "click": "button[type=submit]"
+        },
+        {
+          "wait": 900
+        },
+        {
+          "evaluate": "document.querySelector('#agent').scrollIntoView({behavior:'smooth'})"
+        },
+        {
+          "wait": 4900
+        }
+      ]
+    },
+    {
+      "scene": 10,
+      "goto": "file:///Users/mac/Desktop/CODE/hackathons/projects/cashmandate/demo/film/film.html"
+    }
+  ]
+}
