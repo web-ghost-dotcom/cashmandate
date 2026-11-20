@@ -4,6 +4,8 @@
 
 Spending mandates for AI agents on Bitcoin Cash. Give your agent a budget, not your key.
 
+Live demo: https://cashmandate.vercel.app
+
 The owner funds one vault output. The agent holds a key that can spend it only through a CashScript covenant, inside terms the owner set:
 
 | Rule | What the script enforces |
